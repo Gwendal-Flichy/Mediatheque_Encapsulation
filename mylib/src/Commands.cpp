@@ -59,6 +59,7 @@ void Commands::process(const InstructionLine& instruction)
         for (auto i = tokenList.size() - 6; i < tokenList.size() - 1; ++i)
         {
 			phoneNumber = phoneNumber + tokenList[i];
+			int NumberVerification = std::stoi(tokenList[i]);
         }
 
 		m_Mediatheque.addClient(ClientFullName(tokenList[1], tokenList[2]), std::stoi(tokenList[3]), address, phoneNumber, tokenList[tokenList.size() - 1]);
