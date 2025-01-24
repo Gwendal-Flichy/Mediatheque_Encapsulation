@@ -1,5 +1,1 @@
-.vs/*
-x64/*
-MediathequeV1/x64/*
-*.filters
-*.user
+build/*
