@@ -11,7 +11,7 @@ class Mediatheque
 {
 public:
 
-	void addClient(std::string lastName, std::string firstName, int age, std::string address, std::string phoneNumber, std::string mail);
+	void addClient(ClientFullName fullName, int age, std::string address, std::string phoneNumber, std::string mail);
 
 	void listClient();
 

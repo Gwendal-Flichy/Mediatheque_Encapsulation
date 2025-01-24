@@ -128,12 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Commands.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mediatheque.cpp" />
     <ClCompile Include="Mediatheque.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="Commands.h" />
     <ClInclude Include="Media.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

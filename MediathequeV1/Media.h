@@ -56,7 +56,10 @@ public:
 	{
 		return 0;
 	}
-
+	std::string getISBN()
+	{
+		return m_ISBN;
+	}
 private:
 	std::string m_ISBN;
 
@@ -76,6 +79,11 @@ public:
 	{
 		return m_PEGI;
 	}
+	std::string getstudio()
+	{
+		return m_studio;
+	}
+
 private:
 	std::string m_studio;
 	int m_PEGI;
@@ -95,6 +103,10 @@ public:
 	int getAgeLimit() override
 	{
 		return m_ageLimit;
+	}
+	std::string getSupport()
+	{
+		return m_support;
 	}
 private:
 	std::string m_support;

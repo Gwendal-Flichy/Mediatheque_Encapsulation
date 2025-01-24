@@ -53,6 +53,10 @@ public:
 	{
 		return m_age;
 	}
+	std::string getAddress()
+	{
+		return m_address;
+	}
 	std::string getMail()
 	{
 

@@ -36,6 +36,7 @@ bool operator==(const ClientFullName& fullName1, const ClientFullName& fullName2
     return (fullName1.FirstName == fullName2.FirstName && fullName1.LastName == fullName2.LastName);
 }
 
+
 bool operator<(const ClientFullName& fullName1, const ClientFullName& fullName2)
 {
     if (fullName1.LastName != fullName2.LastName)
@@ -43,10 +44,13 @@ bool operator<(const ClientFullName& fullName1, const ClientFullName& fullName2)
     return fullName1.FirstName < fullName2.FirstName;
 }
 
-
-void Mediatheque::addClient(std::string lastName, std::string firstName, int age, std::string address, std::string phoneNumber, std::string mail)
+void Mediatheque::addClient(ClientFullName fullName, int age, std::string address, std::string phoneNumber, std::string mail)
 {
-    ClientFullName fullName(lastName, firstName);
+    if (age < 0)
+    {
+        std::cout << "Client : " << fullName << " age cannot be negative" << std::endl;
+        return;
+    }
 
     if (m_AllClients.find(fullName) != m_AllClients.end()) {
         std::cout << "Client : "<< fullName << "already exists"<<std::endl;
@@ -105,6 +109,10 @@ void Mediatheque::addMedia(std::string Name, std::string ISBN)
 
 void Mediatheque::addMedia(std::string Name, std::string Support, int AgeLimit)
 {
+    if (AgeLimit < 0) {
+        std::cout << "MOVIE: " << Name << " age limit cannot be negative" << std::endl;
+        return;
+    }
 
     std::pair<mediaType, std::string> key = { MOVIE, Name };
     if (m_AllMedias.find(key) != m_AllMedias.end()) {
@@ -117,6 +125,10 @@ void Mediatheque::addMedia(std::string Name, std::string Support, int AgeLimit)
 
 void Mediatheque::addMedia(std::string Name, std::string Studio, int PEGI, std::string Type)
 {
+    if (PEGI < 0) {
+        std::cout << "VIDEOGAME: " << Name << " PEGI cannot be negative" << std::endl;
+        return;
+    }
 
     std::pair<mediaType, std::string> key = { VIDEOGAME, Name };
     if (m_AllMedias.find(key) != m_AllMedias.end()) {
