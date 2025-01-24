@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include "Client.h"
-#include "Media.h"
+#include "IMedia.h"
 
 
 class Mediatheque

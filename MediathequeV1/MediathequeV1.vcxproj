@@ -134,9 +134,12 @@
     <ClCompile Include="Mediatheque.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Book.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commands.h" />
-    <ClInclude Include="Media.h" />
+    <ClInclude Include="IMedia.h" />
+    <ClInclude Include="Movie.h" />
+    <ClInclude Include="VideoGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

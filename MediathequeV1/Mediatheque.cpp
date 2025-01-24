@@ -2,6 +2,9 @@
 #include "Mediatheque.h"
 #include <algorithm>
 #include <stdexcept>
+#include "Book.h"
+#include "Movie.h"
+#include "VideoGame.h"
 
 std::string MediaTypeToString(mediaType MediaType) {
     switch (MediaType) {

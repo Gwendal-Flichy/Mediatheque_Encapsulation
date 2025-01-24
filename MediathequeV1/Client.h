@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "Mediatheque.h"
-#include "Media.h"
+#include "IMedia.h"
 
 
 struct ClientFullName
