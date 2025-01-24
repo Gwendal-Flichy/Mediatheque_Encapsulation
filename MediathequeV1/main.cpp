@@ -9,6 +9,8 @@ int main()
 	test.addClient("OUI", "paul", 20, "18 rue de mon cu", "0734242542", "oui@ok.com");
 	test.addClient("OUI54", "paul", 20, "18 rue de mon cu", "0734242560", "oui5@ok.com");
 	test.addClient("PAUL", "Pierre", 20, "18 rue de mon cu", "0734242542", "oui2@ok.com");
+	test.addClient("PAUL", "Pierre", 20, "18 rue de mon cu", "0734242542", "oui2@ok.com");
+
 
 	test.listClient();
 
@@ -29,6 +31,8 @@ int main()
 	test.addMedia("LUc4", "Ubisoft", 10, "RPG");
 	test.addMedia("LUc5", "Ubisoft", 10, "RPG");
 	test.addMedia("LUc6", "Ubisoft", 10, "RPG");
+	test.addMedia("LUc6", "Ubisoft", 10, "RPG");
+	test.addMedia("LUc6", "1769405834756");
 	test.addMedia("NONFN", "DVD", 16);
 
 	test.listMedia();

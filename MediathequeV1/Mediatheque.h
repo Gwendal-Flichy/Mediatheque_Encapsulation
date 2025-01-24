@@ -1,10 +1,10 @@
 #pragma once
 
-#include<iostream>
-#include <vector>
+#include <iostream>
+#include <map>
+#include <string>
 #include "Client.h"
 #include "Media.h"
-
 
 
 class Mediatheque
@@ -44,8 +44,8 @@ public:
 
 private:
 
-	std::vector<Client*> m_AllClients;
-	std::vector<IMedia*> m_AllMedias;
+	std::map<ClientFullName, Client*> m_AllClients;
+	std::map<std::pair<mediaType, std::string>, IMedia*> m_AllMedias;
 
 };
 
