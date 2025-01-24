@@ -74,6 +74,11 @@ void Mediatheque::removeClient(ClientFullName fullName)
         std::cout << "Client : " << fullName << "not found" << std::endl;
         return;
     }
+    if (!it->second->ClientMedias.empty())
+    {
+        std::cout << "Client : " << fullName << " has medias" << std::endl;
+        return;
+    }
 
     delete it->second;
     m_AllClients.erase(it);
@@ -81,12 +86,17 @@ void Mediatheque::removeClient(ClientFullName fullName)
 
 void Mediatheque::removeClient(std::string mailOrPhoneNumber)
 {
+	
     auto it = std::find_if(m_AllClients.begin(), m_AllClients.end(),
         [&mailOrPhoneNumber](const auto& pair) {
             return pair.second->getMail() == mailOrPhoneNumber ||
                 pair.second->getPhoneNumber() == mailOrPhoneNumber;
         });
-
+    if (!it->second->ClientMedias.empty())
+    {
+        std::cout << "Client : " << it->second->getClientFullName() << " has medias" << std::endl;
+        return;
+    }
     if (it == m_AllClients.end()) {
         std::cout << "Client mail or PhoneNumber : " << mailOrPhoneNumber << " not found" << std::endl;
         return;
@@ -150,6 +160,12 @@ void Mediatheque::removeMedia(mediaType MediaType, std::string Name)
 {
     std::pair<mediaType, std::string> key = { MediaType, Name };
     auto it = m_AllMedias.find(key);
+	if (it->second->available==false)
+	{
+		std::cout << MediaTypeToString(MediaType) << ": " << Name << " is rented" << std::endl;
+		return;
+	}
+
     if (it == m_AllMedias.end()) {
         std::cout << MediaTypeToString(MediaType) << ": " << Name << " not found" << std::endl;
         return;
@@ -178,6 +194,12 @@ void Mediatheque::rent(ClientFullName fullName, mediaType MediaType, std::string
         std::cout << fullName << " not found" << std::endl;
         return;
     }
+
+	if (clientIt->second->getAge() < mediaIt->second->getAgeLimit()) {
+		std::cout << fullName << " is too young to rent " << MediaName << std::endl;
+		return;
+	}
+        
 
     if (clientIt->second->ClientMedias.size() >= 5) {
         std::cout << fullName << " already has 5 medias or more" << std::endl;
@@ -273,3 +295,8 @@ void Mediatheque::returnMedia(mediaType MediaType, std::string MediaName)
 
     mediaIt->second->available = true;
 }
+
+
+
+
+

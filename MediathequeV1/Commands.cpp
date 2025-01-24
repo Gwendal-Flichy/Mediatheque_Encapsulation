@@ -1,6 +1,6 @@
 
 #include "Commands.h"
-
+#include <conio.h> 
 
 using Token = std::string;
 using TokenList = std::vector<Token>;
@@ -68,7 +68,7 @@ void Commands::process(const InstructionLine& instruction)
 
 	else if (instructionType == "listClient")
     {
-		if (tokenList.size() != 2)
+		if (tokenList.size() != 1)
 		{
 			std::cout << "Invalid number of arguments for listClient" << std::endl;
 			return;
@@ -97,7 +97,7 @@ void Commands::process(const InstructionLine& instruction)
                 std::cout << "Invalid number of arguments for addMedia BOOK" << std::endl;
                 return;
             }
-			if(tokenList[3].size()>13)
+			if(tokenList[4].size()>13)
 			{
 				std::cout << "Invalid ISBN" << std::endl;
 				return;
@@ -131,6 +131,11 @@ void Commands::process(const InstructionLine& instruction)
     }
 	else if (instructionType == "listMedia")
 	{
+		if (tokenList.size() != 1)
+		{
+			std::cout << "Invalid number of arguments for listMedia" << std::endl;
+			return;
+		}
 		m_Mediatheque.listMedia();
 	}
 	else if (instructionType == "removeMedia")
@@ -285,6 +290,59 @@ void Commands::process(const InstructionLine& instruction)
 
 }
 
+
+void Commands::Input() {
+	std::string input;
+	char ch;
+	std::cout << "> ";
+
+	while (true) {
+		ch = _getch();
+
+		if (ch == '\r') {
+			std::cout << std::endl;
+			if (!input.empty()) {
+				commandHistory.push_back(input);
+				historyIndex = commandHistory.size();
+				process(input);
+			}
+			input.clear();
+			std::cout << "> ";
+		}
+		else if (ch == '\b') {
+			if (!input.empty()) {
+				input.pop_back();
+				std::cout << "\b \b";
+			}
+		}
+		else if (ch == -32) {
+			ch = _getch();
+			if (ch == 72) {
+				if (historyIndex > 0) {
+					historyIndex--;
+					input = commandHistory[historyIndex];
+					std::cout << "\r> " << input << std::string(50, ' ') << "\r> " << input;
+				}
+			}
+			else if (ch == 80) {
+				if (historyIndex < commandHistory.size() - 1) {
+					historyIndex++;
+					input = commandHistory[historyIndex];
+					std::cout << "\r> " << input << std::string(50, ' ') << "\r> " << input;
+				}
+				else {
+					historyIndex = commandHistory.size();
+					input.clear();
+					std::cout << "\r> " << std::string(50, ' ') << "\r> ";
+				}
+			}
+		}
+		else {
+			input += ch;
+			std::cout << ch;
+		}
+	}
+}
 
 
 
